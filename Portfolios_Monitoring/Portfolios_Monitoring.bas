@@ -14,7 +14,7 @@ Dim tod As Long
 
 FirstFile = ThisWorkbook.Name
 
-Response = MsgBox("Ще прехвърляте ли данни за предходен ден", vbYesNoCancel + vbInformation, "Импорт на Данни")
+Response = MsgBox("Р©Рµ РїСЂРµС…РІСЉСЂР»СЏС‚Рµ Р»Рё РґР°РЅРЅРё Р·Р° РїСЂРµРґС…РѕРґРµРЅ РґРµРЅ", vbYesNoCancel + vbInformation, "РРјРїРѕСЂС‚ РЅР° Р”Р°РЅРЅРё")
 If Response = vbYes Then
     Call TransferDataPrevDay(FirstFile)
     GoTo startcopydata
@@ -25,7 +25,7 @@ ElseIf Response = vbNo Then
 End If
 
 startcopydata:
-Response = MsgBox("Изберете директорията с файловете за качване", vbYesNoCancel + vbInformation, "Импорт на Данни")
+Response = MsgBox("РР·Р±РµСЂРµС‚Рµ РґРёСЂРµРєС‚РѕСЂРёСЏС‚Р° СЃ С„Р°Р№Р»РѕРІРµС‚Рµ Р·Р° РєР°С‡РІР°РЅРµ", vbYesNoCancel + vbInformation, "РРјРїРѕСЂС‚ РЅР° Р”Р°РЅРЅРё")
 If Response = vbNo Or Response = vbCancel Then Exit Sub
 
 
@@ -126,7 +126,7 @@ Sub TransferDataPrevDay(ByVal FirstFile)
 Dim tod As Long
 
 If Workbooks(FirstFile).Worksheets("Portfolios").Cells(2, 7).Value = Workbooks(FirstFile).Worksheets("AssetsPrev").Cells(2, 16).Value Then
-    MsgBox ("Данните от предходен ден са вече прехвърляни")
+    MsgBox ("Р”Р°РЅРЅРёС‚Рµ РѕС‚ РїСЂРµРґС…РѕРґРµРЅ РґРµРЅ СЃР° РІРµС‡Рµ РїСЂРµС…РІСЉСЂР»СЏРЅРё")
     Exit Sub
 End If
 
@@ -165,10 +165,10 @@ PortfolioNumbers = Worksheets("Portfolios").Cells(1, 12).Value
 
 k = 7
     For j = 2 To Worksheets("Assets").Cells(1, 20).Value
-        If Worksheets("Assets").Cells(j, 1).Value = "Акции" And ISINinList(Worksheets("Assets").Cells(j, 2).Value) = True Then
+        If Worksheets("Assets").Cells(j, 1).Value = "РђРєС†РёРё" And ISINinList(Worksheets("Assets").Cells(j, 2).Value) = True Then
             Worksheets("Z_Grupa_Report").Cells(k, 1).Value = Worksheets("Assets").Cells(j, 2).Value
             Worksheets("Z_Grupa_Report").Cells(k, 2).Value = Worksheets("Assets").Cells(j, 3).Value
-            If Worksheets("Assets").Cells(j, 1).Value = "Акции" And Worksheets("Assets").Cells(j, 2).Value = "BG1100111111" And Worksheets("Assets").Cells(j, 14).Value = "SSSSSS" Then
+            If Worksheets("Assets").Cells(j, 1).Value = "ГЂГЄГ¶ГЁГЁ" And Worksheets("Assets").Cells(j, 2).Value = "BG1100111111" And Worksheets("Assets").Cells(j, 14).Value = "SSSSSS" Then
                 Worksheets("Z_Grupa_Report").Cells(k, 4).Value = Worksheets("Assets").Cells(j, 7).Value + Worksheets("Exception").Cells(1, 7).Value
             Else
                 Worksheets("Z_Grupa_Report").Cells(k, 4).Value = Worksheets("Assets").Cells(j, 7).Value
@@ -190,7 +190,7 @@ Dim RepoShares As Double
 RepoShares = 0#
 
 For i = 2 To Worksheets("Assets").Cells(1, 20).Value
-    If Worksheets("Assets").Cells(i, 2).Value = ISIN And Worksheets("Assets").Cells(i, 14).Value = PortfolioCode And Worksheets("Assets").Cells(i, 1).Value = "Акции - Репо" And Worksheets("Assets").Cells(i, 7).Value < 0 Then
+    If Worksheets("Assets").Cells(i, 2).Value = ISIN And Worksheets("Assets").Cells(i, 14).Value = PortfolioCode And Worksheets("Assets").Cells(i, 1).Value = "РђРєС†РёРё - Р РµРїРѕ" And Worksheets("Assets").Cells(i, 7).Value < 0 Then
         RepoShares = RepoShares + Worksheets("Assets").Cells(i, 7).Value
     End If
 Next i
